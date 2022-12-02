@@ -11,6 +11,9 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use Hyperf\Contract\ConfigInterface;
+use Hyperf\Utils\ApplicationContext;
+
 class IndexController extends AbstractController
 {
     public function index()
@@ -18,6 +21,25 @@ class IndexController extends AbstractController
         $user = $this->request->input('user', 'Hyperf');
         $method = $this->request->getMethod();
 
+        return [
+            'method' => $method,
+            'message' => "Hello {$user}.",
+        ];
+    }
+
+    public function loopTest()
+    {
+        $user = $this->request->input('user', 'Hyperf');
+        $method = $this->request->getMethod();
+        var_dump('max_wait_time', ApplicationContext::getContainer()->get(ConfigInterface::class)->get('server.settings.max_wait_time'));
+        $t1 = time();
+        var_dump('loop start');
+        while (1) {
+            if (time() - $t1 >= 20) {
+                break;
+            }
+        }
+        var_dump('loop finished');
         return [
             'method' => $method,
             'message' => "Hello {$user}.",
