@@ -33,7 +33,7 @@
         "hyperf/redis": "~2.2.0",
         "hyperf/rpn": "~2.2",
         "hyperf/signal": "~2.2",
-        "hyperf/socketio-server": "^2.2",
+        "hyperf/socketio-server": "^2.2"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
